@@ -1,0 +1,57 @@
+.body {
+  height: 100vh;
+  width: 100%;
+  margin: 0px;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: #46424D;
+  margin: 0px;
+  height: 10%;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  color: #FFF;
+  margin: 0px;
+  height: 100%;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.main-container {
+  height: 90%;
+  width: 100%;
+  background-color: #2B2733;
+  display: inline-flex;
+}
+
+.main-left {
+  width: 66%;
+  height: 100%;
+  border-right: 4px solid #46424D;
+}
+
+.activity-container {
+  width: 90%;
+  height: 85%;
+  background-color: #46424D;
+  border-radius: 5px;
+  margin-left: 5%;
+}
+
+.activity-header {
+  color: #CBC9CF;
+  margin-left: 5%;
+  font-size: 24px;
+}
+
+.main-right {
+  width: 33%;
+  height: 100%;
+}
