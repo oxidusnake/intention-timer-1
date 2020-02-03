@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
 </head>
 
-<body class="body">
+  <body class="body">
     <header class="header">
       <h1 class="page-title">INTENTION TIMER</h1>
     </header>
@@ -18,25 +18,40 @@
           <section class="activity-container">
             <h3 class="category-header">Select A Category:</h3>
             <section class="activity-box-container">
-              <div class="activity-boxes">
+              <div class="study-box activity-boxes">
                 <img class="study-icon icon" src="assets/study.svg">
                 <p class="box-title">Study</p>
               </div>
-              <div class="activity-boxes">
+              <div class="meditate-box activity-boxes">
                 <img class="meditate-icon icon" src="assets/meditate.svg">
                 <p class="box-title">Meditate</p>
               </div>
-              <div class="activity-boxes">
+              <div class="exercise-box activity-boxes">
                 <img class="exercise-icon icon" src="assets/exercise.svg">
-                <p class="box-title">Study</p>
+                <p class="box-title">Exercise</p>
               </div>
             </section>
+            <h3 class="accomplishment-header">What would you like to accomplish during this time?</h3>
+            <input type="text" class="accomplishment-answer">
+            <section class="time-container">
+              <div class="min-sec-container">
+                <h3 class="minutes-title">Minutes</h3>
+                <input type="text" class="minutes-input">
+              </div>
+              <div class="min-sec-container">
+                <h3 class="seconds-title">Seconds</h3>
+                <input type="text" class="seconds-input">
+              </div>
+            </section>
+            <div class="button-container">
+              <button class="start-button">START ACTIVITY</button>
+            </div>
           </section>
         </div>
-      </section>
+        </section>
       <section class="main-right">
       </section>
-  </div>
+    </div>
+  </body>
   <script src="js/scripts.js"></script>
-</body>
 </html>
