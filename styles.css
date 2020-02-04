@@ -81,6 +81,18 @@
   border-radius: 4px;
 }
 
+.active-study-box{
+  border: 2px solid #B3FD78;
+}
+
+.active-meditate-box{
+  border: 2px solid #C278FD;
+}
+
+.active-exercise-box{
+  border: 2px solid #FD8078;
+}
+
 .icon {
   height: 30px;
   width: 30px;
