@@ -169,3 +169,9 @@
   width: 33%;
   height: 100%;
 }
+
+.past-activity-header {
+    color: #CBC9CF;
+    margin-left: 10%;
+    font-size: 24px;
+}
