@@ -81,16 +81,21 @@
   border-radius: 4px;
 }
 
-.active-study-box{
+.active-study-box {
   border: 2px solid #B3FD78;
+  color: #B3FD78;
 }
 
-.active-meditate-box{
+.active-meditate-box {
   border: 2px solid #C278FD;
 }
 
-.active-exercise-box{
+.active-exercise-box {
   border: 2px solid #FD8078;
+}
+
+.study-icon {
+  color: #B3FD78;
 }
 
 .icon {
