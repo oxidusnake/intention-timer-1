@@ -34,3 +34,13 @@ activityBoxes.addEventListener('click', changeBoxes);
       }
     }
   }
+
+  function checkInput() {
+    if(minutesInput.value === '') {
+      minutesInput.value = '';
+    }
+    if(secondsInput.value === '') {
+      secondsInput.value = '';
+    }
+  }
+
