@@ -58,6 +58,11 @@
   width: 75%;
 }
 
+.timer-container {
+  height: 85%;
+  width: 75%;
+}
+
 .category-header {
   color: #FFF;
 }
@@ -79,6 +84,37 @@
   height: 100%;
   border: 2px solid #FFF;
   border-radius: 4px;
+}
+
+.timer-container {
+  height: 85%;
+  width: 28%;
+}
+
+.chosen-task-header {
+  color: #FFF;
+  text-align: center;
+}
+
+.timer-countdown {
+  color: #FFF;
+  text-align: center;
+  font-size: 55px;
+  font-weight: bold;
+  display: inherit;
+}
+
+.circle-start-button {
+  border: 5px solid  #C278FD;
+  border-radius: 50%;
+  background-color: #46424D;
+  height: 250px;
+  width: 250px;
+  align-items: center;
+  font-size: 20px;
+  color: #FFF;
+  margin-top: 60px;
+
 }
 
 .active-study-box {
