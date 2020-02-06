@@ -12,8 +12,8 @@ var secondsInput = document.querySelector('.seconds-input');
 var taskAnswer = document.querySelector('.task-answer');
 var startButton = document.querySelector('.start-button');
 var activityBoxes = document.querySelector('.activity-box-container')
-var boxArray = ['studyBox, meditateBox, exerciseBox']
-var inputArray = ['taskAnswer, minutesInput, secondsInput']
+var boxArray = [studyBox, meditateBox, exerciseBox]
+var inputArray = [taskAnswer, minutesInput, secondsInput]
 
 
 studyBox.addEventListener('click', studyBoxChange);
@@ -78,7 +78,7 @@ function exerciseBoxChange() {
 }
   }
 
-  function showCard() {
+  function showTimer() {
 
   }
 
