@@ -7,10 +7,19 @@ var exerciseTitle = document.querySelector('.exercise');
 var studyIcon = document.querySelector('.study-icon');
 var meditateIcon = document.querySelector('.meditate-icon');
 var exerciseIcon = document.querySelector('.exercise-icon');
+var minutesInput = document.querySelector('.minutes-input');
+var secondsInput = document.querySelector('.seconds-input');
+var taskAnswer = document.querySelector('.task-answer');
+var startButton = document.querySelector('.start-button');
+
 
 studyBox.addEventListener('click', studyBoxChange);
 meditateBox.addEventListener('click', meditateBoxChange);
 exerciseBox.addEventListener('click', exerciseBoxChange);
+minutesInput.addEventListener('input', checkTime);
+secondsInput.addEventListener('input', checkTime);
+startButton.addEventListener('click', checkInputs);
+
 
 function studyBoxChange() {
   //if the box that is clicked contains a class of said box,
@@ -50,3 +59,19 @@ function exerciseBoxChange() {
     studyBox.classList.remove('active-study-box');
     studyTitle.style.color = '#FFF';
   }
+
+  function checkTime() {
+    if(minutesInput.value === '') {
+      minutesInput.value = '';
+    }
+    if(secondsInput.value === '') {
+      secondsInput.value = '';
+    }
+  }
+
+  function checkInputs()
+
+
+    // var invalidChars = invalidChars.replace(/[^a-zA-Z ]/g, "");
+    // var validChars = /[0-9]/;
+    // var invalidChars = name.replace([e-+.] "");
