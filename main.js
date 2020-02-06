@@ -11,6 +11,9 @@ var minutesInput = document.querySelector('.minutes-input');
 var secondsInput = document.querySelector('.seconds-input');
 var taskAnswer = document.querySelector('.task-answer');
 var startButton = document.querySelector('.start-button');
+var activityBoxes = document.querySelector('.activity-box-container')
+var boxArray = ['studyBox, meditateBox, exerciseBox']
+var inputArray = ['taskAnswer, minutesInput, secondsInput']
 
 
 studyBox.addEventListener('click', studyBoxChange);
@@ -69,9 +72,31 @@ function exerciseBoxChange() {
     }
   }
 
-  function checkInputs()
+  function showError() {
+    if (boxArray != "active") {
+      return ('A description is required.')
+}
+  }
+
+  function showCard() {
+
+  }
+
+  function checkInputs(){
+    for (var i = 0; i < boxArray.length; i++) {
+      if(boxArray[i] === "active" && inputArray.value !== '') {
+      showpage()
+    } else {
+      showerror()
+    }
+  }
+}
 
 
-    // var invalidChars = invalidChars.replace(/[^a-zA-Z ]/g, "");
-    // var validChars = /[0-9]/;
-    // var invalidChars = name.replace([e-+.] "");
+  // here is an idea for targeting child elements
+  // childClassList1= document.querySelector('.childClass:nth-child(2)');
+
+
+
+    // else return('A description is requried.')
+  // }
