@@ -1,35 +1,18 @@
 var studyBox = document.querySelector('.study-box');
 var meditateBox = document.querySelector('.meditate-box');
 var exerciseBox = document.querySelector('.exercise-box');
-var studyTitle = document.querySelector('.study');
-var meditateTitle = document.querySelector('.meditate');
-var exerciseTitle = document.querySelector('.exercise');
-var studyIcon = document.querySelector('.study-icon');
-var meditateIcon = document.querySelector('.meditate-icon');
-var exerciseIcon = document.querySelector('.exercise-icon');
-<<<<<<< HEAD
+var activityBoxes = document.querySelector('.activity-box-container');
 var minutesInput = document.querySelector('.minutes-input');
 var secondsInput = document.querySelector('.seconds-input');
-var taskAnswer = document.querySelector('.task-answer');
-var startButton = document.querySelector('.start-button');
-var activityBoxes = document.querySelector('.activity-box-container')
-var boxArray = [studyBox, meditateBox, exerciseBox]
-var inputArray = [taskAnswer, minutesInput, secondsInput]
-
-
-studyBox.addEventListener('click', studyBoxChange);
-meditateBox.addEventListener('click', meditateBoxChange);
-exerciseBox.addEventListener('click', exerciseBoxChange);
-minutesInput.addEventListener('input', checkTime);
-secondsInput.addEventListener('input', checkTime);
-startButton.addEventListener('click', checkInputs);
-
-=======
-var activityBoxes = document.querySelector('.activity-box-container');
+var startBtn = document.querySelector('.start-button')
+var taskAnswer = document.querySelector('.task-answer')
 var boxArray = [studyBox, meditateBox, exerciseBox];
+var inputsArray = [minutesInput, secondsInput, taskAnswer];
 
 activityBoxes.addEventListener('click', changeBoxes);
->>>>>>> master
+minutesInput.addEventListener('input', checkTime);
+secondsInput.addEventListener('input', checkTime);
+startBtn.addEventListener('click', checkBoxes);
 
   function changeBoxes() {
     var classList = event.target.classList;
@@ -54,16 +37,6 @@ activityBoxes.addEventListener('click', changeBoxes);
     }
   }
 
-  function checkInput() {
-    if(minutesInput.value === '') {
-      minutesInput.value = '';
-    }
-    if(secondsInput.value === '') {
-      secondsInput.value = '';
-    }
-  }
-
-<<<<<<< HEAD
   function checkTime() {
     if(minutesInput.value === '') {
       minutesInput.value = '';
@@ -72,26 +45,62 @@ activityBoxes.addEventListener('click', changeBoxes);
       secondsInput.value = '';
     }
   }
+  showTimer()
 
-  function showError() {
-    if (boxArray != "active") {
-      return ('A description is required.')
-}
+function checkBoxes(){
+  var isNotSelected;
+  for (var i = 0; i < boxArray.length; i++) {
+    if(!boxArray[i].classList.contains("active")) {
+      isNotSelected = true;
+    } else {
+      isNotSelected = false;
+      break
+    }
   }
+  checkInputs(isNotSelected)
+}
+
+function checkInputs(isNotSelected) {
+  for (var i = 0; i < inputsArray.length; i++) {
+    if(inputsArray[i].value !== '' && isNotSelected === false) {
+      showTimer();
+    } else {
+      break
+    }
+  }
+  showError();
+}
+
+  function showError() {{
+    if(taskAnswer.value === "")
+    taskAnswer.insertAdjacentHTML('afterend', `
+    <div class="warning-container">
+      <img class="warning-icon" src="assets/warning.svg">
+      <p class="warning">A description is required.</p>
+    </div>`)
+    }
+    if(minutesInput.value === ""){
+    minutesInput.insertAdjacentHTML('afterend', `
+    <div class="warning-container">
+      <img class="warning-icon" src="assets/warning.svg">
+      <p class="warning">Define your minutes.</p>
+    </div>`)
+    }
+    if(secondsInput.value === ""){
+    secondsInput.insertAdjacentHTML('afterend', `
+    <div class="warning-container">
+      <img class="warning-icon" src="assets/warning.svg">
+      <p class="warning">Define your seconds.</p>
+    </div>`)
+    }
+  }
+
+
 
   function showTimer() {
 
   }
 
-  function checkInputs(){
-    for (var i = 0; i < boxArray.length; i++) {
-      if(boxArray[i] === "active" && inputArray.value !== '') {
-      showpage()
-    } else {
-      showerror()
-    }
-  }
-}
 
 
   // here is an idea for targeting child elements
@@ -101,5 +110,3 @@ activityBoxes.addEventListener('click', changeBoxes);
 
     // else return('A description is requried.')
   // }
-=======
->>>>>>> master

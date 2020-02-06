@@ -72,6 +72,7 @@
 }
 
 .activity-boxes {
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,6 +81,7 @@
   height: 100%;
   border: 2px solid #FFF;
   border-radius: 4px;
+  background-color: #46424D;
 }
 
 .study-icon {
@@ -225,6 +227,18 @@
   color: #CBC9CF;
   margin-left: 5%;
   margin-top: 10px;
+}
+
+.warning-container {
+  display: flex;
+
+}
+.warning-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+.warning {
+  color: #EFB7EC;
 }
 
 .study-box.active{
