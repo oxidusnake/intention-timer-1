@@ -37,6 +37,7 @@
 }
 
 .activity-background {
+  color: #FFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +137,6 @@
 }
 
 .box-title {
-  color: #FFF;
   margin: 4px;
   font-weight: 400;
   font-size: 18px;
@@ -270,4 +270,19 @@
   color: #CBC9CF;
   margin-left: 5%;
   margin-top: 10px;
+}
+
+.study-box.active{
+  border: 2px solid #B3FD78;
+  color: #B3FD78;
+}
+
+.meditate-box.active {
+  border: 2px solid #C278FD;
+  color: #C278FD;
+}
+
+.exercise-box.active {
+  border: 2px solid #FD8078;
+  color: #FD8078;
 }
