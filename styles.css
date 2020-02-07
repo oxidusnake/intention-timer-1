@@ -80,6 +80,7 @@
 }
 
 .activity-boxes {
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,6 +89,7 @@
   height: 100%;
   border: 2px solid #FFF;
   border-radius: 4px;
+  background-color: #46424D;
 }
 
 .chosen-task-header {
@@ -111,7 +113,6 @@
   font-size: 1.5em;
   color: #FFF;
   margin-top: 60px;
-
 }
 
 .active-study-box {
@@ -270,6 +271,21 @@
   color: #CBC9CF;
   margin-left: 5%;
   margin-top: 10px;
+}
+
+.warning-container {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  margin-top: 10px;
+
+}
+.warning-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+.warning {
+  color: #EFB7EC;
 }
 
 .study-box.active{

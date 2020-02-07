@@ -1,16 +1,20 @@
 var studyBox = document.querySelector('.study-box');
 var meditateBox = document.querySelector('.meditate-box');
 var exerciseBox = document.querySelector('.exercise-box');
-var studyTitle = document.querySelector('.study');
-var meditateTitle = document.querySelector('.meditate');
-var exerciseTitle = document.querySelector('.exercise');
-var studyIcon = document.querySelector('.study-icon');
-var meditateIcon = document.querySelector('.meditate-icon');
-var exerciseIcon = document.querySelector('.exercise-icon');
 var activityBoxes = document.querySelector('.activity-box-container');
+var minutesInput = document.querySelector('.minutes-input');
+var secondsInput = document.querySelector('.seconds-input');
+var startBtn = document.querySelector('.start-button')
+var taskAnswer = document.querySelector('.task-answer')
+var mainLeft = document.querySelector('.main-left')
 var boxArray = [studyBox, meditateBox, exerciseBox];
+var inputsArray = [minutesInput, secondsInput, taskAnswer];
+
 
 activityBoxes.addEventListener('click', changeBoxes);
+minutesInput.addEventListener('input', checkTime);
+secondsInput.addEventListener('input', checkTime);
+startBtn.addEventListener('click', checkBoxes);
 
   function changeBoxes() {
     var classList = event.target.classList;
@@ -35,7 +39,7 @@ activityBoxes.addEventListener('click', changeBoxes);
     }
   }
 
-  function checkInput() {
+  function checkTime() {
     if(minutesInput.value === '') {
       minutesInput.value = '';
     }
@@ -44,3 +48,62 @@ activityBoxes.addEventListener('click', changeBoxes);
     }
   }
 
+    function showTimer() {
+      mainLeft.innerHTML = `
+      <h1 class="activity-header">Current Activity</h1>
+      <section class="activity-background">
+        <section class="timer-container">
+          <h1 class="chosen-task-header">${taskAnswer.value}</h1>
+          <span class="timer-countdown">${minutesInput.value}:${secondsInput.value}</span>
+          <button class="circle-start-button">START</button>
+        </section>
+      </section>`
+    }
+
+function checkBoxes(){
+  var isNotSelected;
+  for (var i = 0; i < boxArray.length; i++) {
+    if(!boxArray[i].classList.contains("active")) {
+      isNotSelected = true;
+    } else {
+      isNotSelected = false;
+      break
+    }
+  }
+  checkInputs(isNotSelected)
+}
+
+function checkInputs(isNotSelected) {
+  for (var i = 0; i < inputsArray.length; i++) {
+    if(inputsArray[i].value !== '' && isNotSelected === false) {
+      showTimer();
+    } else {
+      break
+    }
+  }
+  showError();
+}
+
+  function showError() {{
+    if(taskAnswer.value === "")
+    taskAnswer.insertAdjacentHTML('afterend', `
+    <div class="warning-container">
+      <img class="warning-icon" src="assets/warning.svg">
+      <p class="warning">A description is required.</p>
+    </div>`)
+    }
+    if(minutesInput.value === ""){
+    minutesInput.insertAdjacentHTML('afterend', `
+    <div class="warning-container">
+      <img class="warning-icon" src="assets/warning.svg">
+      <p class="warning">Define your minutes.</p>
+    </div>`)
+    }
+    if(secondsInput.value === ""){
+    secondsInput.insertAdjacentHTML('afterend', `
+    <div class="warning-container">
+      <img class="warning-icon" src="assets/warning.svg">
+      <p class="warning">Define your seconds.</p>
+    </div>`)
+    }
+  }
