@@ -59,6 +59,14 @@
   width: 75%;
 }
 
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 85%;
+  width: 75%;
+}
+
 .category-header {
   color: #FFF;
 }
@@ -80,6 +88,43 @@
   height: 100%;
   border: 2px solid #FFF;
   border-radius: 4px;
+}
+
+.chosen-task-header {
+  color: #FFF;
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+.timer-countdown {
+  color: #FFF;
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.circle-start-button {
+  border: 5px solid  #C278FD;
+  border-radius: 50%;
+  background-color: #46424D;
+  height: 10em;
+  width: 10em;
+  font-size: 1.5em;
+  color: #FFF;
+  margin-top: 60px;
+
+}
+
+.active-study-box {
+  border: 2px solid #B3FD78;
+  color: #B3FD78;
+}
+
+.active-meditate-box {
+  border: 2px solid #C278FD;
+}
+
+.active-exercise-box {
+  border: 2px solid #FD8078;
 }
 
 .study-icon {
