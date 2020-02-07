@@ -113,7 +113,6 @@
   font-size: 1.5em;
   color: #FFF;
   margin-top: 60px;
-
 }
 
 .active-study-box {
@@ -276,6 +275,9 @@
 
 .warning-container {
   display: flex;
+  align-items: center;
+  height: 20px;
+  margin-top: 10px;
 
 }
 .warning-icon {

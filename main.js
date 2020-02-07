@@ -6,8 +6,10 @@ var minutesInput = document.querySelector('.minutes-input');
 var secondsInput = document.querySelector('.seconds-input');
 var startBtn = document.querySelector('.start-button')
 var taskAnswer = document.querySelector('.task-answer')
+var mainLeft = document.querySelector('.main-left')
 var boxArray = [studyBox, meditateBox, exerciseBox];
 var inputsArray = [minutesInput, secondsInput, taskAnswer];
+
 
 activityBoxes.addEventListener('click', changeBoxes);
 minutesInput.addEventListener('input', checkTime);
@@ -45,7 +47,18 @@ startBtn.addEventListener('click', checkBoxes);
       secondsInput.value = '';
     }
   }
-  showTimer()
+
+    function showTimer() {
+      mainLeft.innerHTML = `
+      <h1 class="activity-header">Current Activity</h1>
+      <section class="activity-background">
+        <section class="timer-container">
+          <h1 class="chosen-task-header">${taskAnswer.value}</h1>
+          <span class="timer-countdown">${minutesInput.value}:${secondsInput.value}</span>
+          <button class="circle-start-button">START</button>
+        </section>
+      </section>`
+    }
 
 function checkBoxes(){
   var isNotSelected;
@@ -94,19 +107,3 @@ function checkInputs(isNotSelected) {
     </div>`)
     }
   }
-
-
-
-  function showTimer() {
-
-  }
-
-
-
-  // here is an idea for targeting child elements
-  // childClassList1= document.querySelector('.childClass:nth-child(2)');
-
-
-
-    // else return('A description is requried.')
-  // }
