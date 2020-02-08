@@ -7,6 +7,7 @@ var secondsInput = document.querySelector('.seconds-input');
 var startBtn = document.querySelector('.start-button')
 var taskAnswer = document.querySelector('.task-answer')
 var mainLeft = document.querySelector('.main-left')
+var pageTitle = document.querySelector('.page-title')
 var boxArray = [studyBox, meditateBox, exerciseBox];
 var inputsArray = [minutesInput, secondsInput, taskAnswer];
 
@@ -15,6 +16,8 @@ activityBoxes.addEventListener('click', changeBoxes);
 minutesInput.addEventListener('input', checkTime);
 secondsInput.addEventListener('input', checkTime);
 startBtn.addEventListener('click', checkBoxes);
+pageTitle.addEventListener('click', startTimer)
+
 
   function changeBoxes() {
     var classList = event.target.classList;
@@ -48,17 +51,23 @@ startBtn.addEventListener('click', checkBoxes);
     }
   }
 
-    function showTimer() {
+    function showTimer(seconds) {
+      var seconds = seconds || secondsInput.value
       mainLeft.innerHTML = `
       <h1 class="activity-header">Current Activity</h1>
       <section class="activity-background">
         <section class="timer-container">
           <h1 class="chosen-task-header">${taskAnswer.value}</h1>
-          <span class="timer-countdown">${minutesInput.value}:${secondsInput.value}</span>
+          <span class="timer-countdown">${minutesInput.value}:${seconds}</span>
           <button class="circle-start-button">START</button>
         </section>
       </section>`
     }
+
+function startTimer() {
+  var newTimer = new Timer(minutesInput.value, secondsInput.value)
+  newTimer.start(newTimer)
+}
 
 function checkBoxes(){
   var isNotSelected;
