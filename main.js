@@ -51,14 +51,15 @@ pageTitle.addEventListener('click', startTimer)
     }
   }
 
-    function showTimer(seconds) {
-      var seconds = seconds || secondsInput.value
+    function showTimer(minutes, seconds) {
+      var displayMinutes = minutes || minutesInput.value
+      var displaySeconds = seconds || secondsInput.value
       mainLeft.innerHTML = `
       <h1 class="activity-header">Current Activity</h1>
       <section class="activity-background">
         <section class="timer-container">
           <h1 class="chosen-task-header">${taskAnswer.value}</h1>
-          <span class="timer-countdown">${minutesInput.value}:${seconds}</span>
+          <span class="timer-countdown">${displayMinutes}:${displaySeconds}</span>
           <button class="circle-start-button">START</button>
         </section>
       </section>`

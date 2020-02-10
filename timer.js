@@ -6,15 +6,30 @@ class Timer {
 
   start(newTimer) {
     var seconds = this.seconds;
+    var minutes = this.minutes
     var interval = setInterval(function() {
     	seconds--;
-    	if (seconds === 0) {
-    		clearInterval(interval);
-    	}
-    	var d = new Date(seconds * 1000)
-    	var timeStr = d.toISOString().slice(11, 19);
-    	console.log(timeStr);
-      showTimer(seconds)
+      if (seconds === 0 && minutes === '0') {
+        clearInterval(interval);
+        if(seconds === 0) {
+          seconds = '0';
+        }
+      } else {
+        newTimer.changeTime(minutes, seconds)
+    }
+      showTimer(minutes, seconds)
     }, 1000);
-}
+  }
+
+  changeTime(minutes, seconds) {
+    if(seconds === 0) {
+    seconds = 59;
+      if(minutes !== 0) {
+        minutes--
+      }
+    }
+    if(minutes === 0) {
+      minutes = '0'
+    }
+  }
 }
