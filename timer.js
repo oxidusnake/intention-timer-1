@@ -7,29 +7,30 @@ class Timer {
   start(newTimer) {
     var seconds = this.seconds;
     var minutes = this.minutes
+    debugger
     var interval = setInterval(function() {
     	seconds--;
-      if (seconds === 0 && minutes === '0') {
+      if(seconds < 10) {
+        seconds = `0${seconds}`
+      }
+      if (seconds === '00' && minutes === '0') {
         clearInterval(interval);
-        if(seconds === 0) {
-          seconds = '0';
-        }
       } else {
-        newTimer.changeTime(minutes, seconds)
-    }
+        if(minutes > 0) {
+          minutes--
+        }
+        if(seconds === '00') {
+          seconds = 59;
+        }
+        if(minutes === 0) {
+          minutes = '0'
+        }
+      }
       showTimer(minutes, seconds)
     }, 1000);
   }
 
   changeTime(minutes, seconds) {
-    if(seconds === 0) {
-    seconds = 59;
-      if(minutes !== 0) {
-        minutes--
-      }
-    }
-    if(minutes === 0) {
-      minutes = '0'
-    }
+
   }
 }

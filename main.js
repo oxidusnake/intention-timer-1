@@ -19,7 +19,7 @@ startBtn.addEventListener('click', checkBoxes);
 pageTitle.addEventListener('click', startTimer)
 
 
-  function changeBoxes() {
+function changeBoxes() {
     var classList = event.target.classList;
     var currentDataId = event.target.dataset.id;
     var btnImg = event.target.firstElementChild;
@@ -33,7 +33,7 @@ pageTitle.addEventListener('click', startTimer)
     removeActive(currentDataId);
   }
 
-  function removeActive(currentDataId) {
+function removeActive(currentDataId) {
   for (var i = 0; i < boxArray.length; i++) {
     if(boxArray[i].dataset.id !== currentDataId) {
       boxArray[i].classList.remove('active');
@@ -42,7 +42,7 @@ pageTitle.addEventListener('click', startTimer)
     }
   }
 
-  function checkTime() {
+function checkTime() {
     if(minutesInput.value === '') {
       minutesInput.value = '';
     }
@@ -51,19 +51,22 @@ pageTitle.addEventListener('click', startTimer)
     }
   }
 
-    function showTimer(minutes, seconds) {
-      var displayMinutes = minutes || minutesInput.value
-      var displaySeconds = seconds || secondsInput.value
-      mainLeft.innerHTML = `
-      <h1 class="activity-header">Current Activity</h1>
-      <section class="activity-background">
-        <section class="timer-container">
-          <h1 class="chosen-task-header">${taskAnswer.value}</h1>
-          <span class="timer-countdown">${displayMinutes}:${displaySeconds}</span>
-          <button class="circle-start-button">START</button>
-        </section>
-      </section>`
-    }
+function showTimer(minutes, seconds) {
+  var displayMinutes = minutes || minutesInput.value
+  var displaySeconds = seconds || secondsInput.value
+  // if(secondsInput.value <= 9) {
+  //   displaySeconds = `0${secondsInput.value}`
+  // }
+  mainLeft.innerHTML = `
+  <h1 class="activity-header">Current Activity</h1>
+  <section class="activity-background">
+    <section class="timer-container">
+      <h1 class="chosen-task-header">${taskAnswer.value}</h1>
+      <span class="timer-countdown">${displayMinutes}:${displaySeconds}</span>
+      <button class="circle-start-button">START</button>
+    </section>
+  </section>`
+}
 
 function startTimer() {
   var newTimer = new Timer(minutesInput.value, secondsInput.value)
@@ -85,7 +88,7 @@ function checkBoxes(){
 
 function checkInputs(isNotSelected) {
   for (var i = 0; i < inputsArray.length; i++) {
-    if(inputsArray[i].value !== '' && isNotSelected === false) {
+    if(inputsArray[i].value !== '' && !isNotSelected) {
       showTimer();
     } else {
       break
@@ -94,26 +97,26 @@ function checkInputs(isNotSelected) {
   showError();
 }
 
-  function showError() {{
-    if(taskAnswer.value === "")
+function showError() {{
+  if(taskAnswer.value === "")
     taskAnswer.insertAdjacentHTML('afterend', `
     <div class="warning-container">
       <img class="warning-icon" src="assets/warning.svg">
       <p class="warning">A description is required.</p>
     </div>`)
-    }
-    if(minutesInput.value === ""){
+  }
+  if(minutesInput.value === ""){
     minutesInput.insertAdjacentHTML('afterend', `
     <div class="warning-container">
       <img class="warning-icon" src="assets/warning.svg">
       <p class="warning">Define your minutes.</p>
     </div>`)
-    }
-    if(secondsInput.value === ""){
+  }
+  if(secondsInput.value === ""){
     secondsInput.insertAdjacentHTML('afterend', `
     <div class="warning-container">
       <img class="warning-icon" src="assets/warning.svg">
       <p class="warning">Define your seconds.</p>
     </div>`)
-    }
   }
+}
