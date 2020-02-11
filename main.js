@@ -7,7 +7,11 @@ var secondsInput = document.querySelector('.seconds-input');
 var startBtn = document.querySelector('.start-button')
 var taskAnswer = document.querySelector('.task-answer')
 var mainLeft = document.querySelector('.main-left')
-var pageTitle = document.querySelector('.page-title')
+var timerStart = document.querySelector('.timer-start-button')
+var page1 = document.querySelector('.activity-background-1')
+var page2 = document.querySelector('.activity-background-2')
+var timerHeader = document.querySelector('.chosen-task-header')
+var timerCount = document.querySelector('.timer-countdown')
 var boxArray = [studyBox, meditateBox, exerciseBox];
 var inputsArray = [minutesInput, secondsInput, taskAnswer];
 
@@ -16,7 +20,7 @@ activityBoxes.addEventListener('click', changeBoxes);
 minutesInput.addEventListener('input', checkTime);
 secondsInput.addEventListener('input', checkTime);
 startBtn.addEventListener('click', checkBoxes);
-pageTitle.addEventListener('click', startTimer)
+timerStart.addEventListener('click', startTimer)
 
 
 function changeBoxes() {
@@ -51,26 +55,40 @@ function checkTime() {
     }
   }
 
-function showTimer(minutes, seconds) {
-  var displayMinutes = minutes || minutesInput.value
-  var displaySeconds = seconds || secondsInput.value
-  // if(secondsInput.value <= 9) {
-  //   displaySeconds = `0${secondsInput.value}`
-  // }
-  mainLeft.innerHTML = `
-  <h1 class="activity-header">Current Activity</h1>
-  <section class="activity-background">
-    <section class="timer-container">
-      <h1 class="chosen-task-header">${taskAnswer.value}</h1>
-      <span class="timer-countdown">${displayMinutes}:${displaySeconds}</span>
-      <button class="circle-start-button">START</button>
-    </section>
-  </section>`
+function displayTimer() {
+  page1.classList.add('hidden')
+  page2.classList.remove('hidden')
+  timerHeader.innerText = taskAnswer.value;
+  debugger
+  if(secondsInput.value < 10) {
+    secondsInput.value = `0${secondsInput.value}`
+  }
+  timerCount.innerText = `${minutesInput.value}:${secondsInput.value}`
 }
 
 function startTimer() {
-  var newTimer = new Timer(minutesInput.value, secondsInput.value)
-  newTimer.start(newTimer)
+  debugger
+  var minutes = Number(minutesInput.value);
+  var seconds = Number(secondsInput.value)
+  var totalSeconds = (minutes * 60) + seconds;
+  var remainingMinutes = Math.floor(totalSeconds / 60);
+  var remainingSeconds = totalSeconds % 60;
+  var countdown = setInterval(function() {
+    if(totalSeconds % 60 < 10) {
+      remainingSeconds = Number(remainingSeconds);
+      remainingSeconds = `0${remainingSeconds}`
+    }
+    timerCount.innerText = `${remainingMinutes}:${remainingSeconds}`
+    totalSeconds--
+    remainingMinutes = Math.floor(totalSeconds / 60);
+    remainingSeconds = totalSeconds % 60;
+    if(remainingSeconds < 10) {
+      remainingSeconds = `0${remainingSeconds}`
+    }
+    if(totalSeconds < 0) {
+      clearInterval(countdown);
+    }
+  }, 1000)
 }
 
 function checkBoxes(){
@@ -89,7 +107,8 @@ function checkBoxes(){
 function checkInputs(isNotSelected) {
   for (var i = 0; i < inputsArray.length; i++) {
     if(inputsArray[i].value !== '' && !isNotSelected) {
-      showTimer();
+      displayTimer();
+      break
     } else {
       break
     }
