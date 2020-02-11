@@ -12,22 +12,22 @@
     <div class="main-container">
       <section class="main-left">
         <h1 class="activity-header">New Activity</h1>
-        <div class="activity-background">
+        <div class="activity-background-1">
           <section class="activity-container">
             <h3 class="category-header">Select A Category:</h3>
             <section class="activity-box-container">
-              <div data-id="study" class="study-box activity-boxes">
+              <button data-id="study" class="study-box activity-boxes">
                 <img class="study-icon icon" src="assets/study.svg">
                 <p class="box-title study">Study</p>
-              </div>
-              <div data-id="meditate" class="meditate-box activity-boxes">
+              </button>
+              <button data-id="meditate" class="meditate-box activity-boxes">
                 <img class="meditate-icon icon" src="assets/meditate.svg">
                 <p class="box-title meditate">Meditate</p>
-              </div>
-              <div data-id="exercise" class="exercise-box activity-boxes">
+              </button>
+              <button data-id="exercise" class="exercise-box activity-boxes">
                 <img class="exercise-icon icon" src="assets/exercise.svg">
                 <p class="box-title exercise">Exercise</p>
-              </div>
+              </button>
             </section>
             <h3 class="task-header">What would you like to accomplish during this time?</h3>
             <input type="texts" class="task-answer">
@@ -46,6 +46,13 @@
             </div>
           </section>
         </div>
+        <section class="activity-background-2 hidden">
+          <section class="timer-container">
+            <h1 class="chosen-task-header"></h1>
+            <span class="timer-countdown"></span>
+            <button class="timer-start-button">START</button>
+          </section>
+        </section>
         </section>
       <section class="main-right">
         <h1 class="past-activity-header">Past Activities</h1>
@@ -62,4 +69,5 @@
     </div>
   </body>
   <script src="main.js"></script>
+  <script src="timer.js"></script>
 </html>

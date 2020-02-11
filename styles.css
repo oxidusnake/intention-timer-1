@@ -1,3 +1,11 @@
+button * {
+  pointer-events: none;
+}
+
+button {
+  cursor: pointer;
+}
+
 .body {
   height: 100vh;
   width: 100%;
@@ -35,8 +43,8 @@
   height: 100%;
   border-right: 4px solid #46424D;
 }
-
-.activity-background {
+.activity-background-1,
+.activity-background-2 {
   color: #FFF;
   display: flex;
   justify-content: center;
@@ -104,7 +112,7 @@
   font-weight: bold;
 }
 
-.circle-start-button {
+.timer-start-button {
   border: 5px solid  #C278FD;
   border-radius: 50%;
   background-color: #46424D;
@@ -301,4 +309,8 @@
 .exercise-box.active {
   border: 2px solid #FD8078;
   color: #FD8078;
+}
+
+.hidden {
+  display: none;
 }
