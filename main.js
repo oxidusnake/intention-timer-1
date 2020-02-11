@@ -12,6 +12,7 @@ var page1 = document.querySelector('.activity-background-1')
 var page2 = document.querySelector('.activity-background-2')
 var timerHeader = document.querySelector('.chosen-task-header')
 var timerCount = document.querySelector('.timer-countdown')
+var logActivityBtn = document.querySelector('.log-activity-btn')
 var boxArray = [studyBox, meditateBox, exerciseBox];
 var inputsArray = [minutesInput, secondsInput, taskAnswer];
 
@@ -67,7 +68,7 @@ function displayTimer() {
 }
 
 function startTimer() {
-  debugger
+  event.target.setAttribute('disabled', true)
   var minutes = Number(minutesInput.value);
   var seconds = Number(secondsInput.value)
   var totalSeconds = (minutes * 60) + seconds;
@@ -87,8 +88,14 @@ function startTimer() {
     }
     if(totalSeconds < 0) {
       clearInterval(countdown);
+      displayComplete();
     }
   }, 1000)
+}
+
+function displayComplete() {
+  timerStart.innerText = 'COMPLETE!'
+  logActivityBtn.classList.remove('hidden')
 }
 
 function checkBoxes(){
