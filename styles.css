@@ -2,7 +2,7 @@ button * {
   pointer-events: none;
 }
 
-button {
+button.activity-boxes {
   cursor: pointer;
 }
 
@@ -113,6 +113,7 @@ button {
 }
 
 .timer-start-button {
+  cursor: pointer;
   border: 5px solid  #C278FD;
   border-radius: 50%;
   background-color: #46424D;
@@ -120,7 +121,8 @@ button {
   width: 10em;
   font-size: 1.5em;
   color: #FFF;
-  margin-top: 60px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .active-study-box {
@@ -216,11 +218,21 @@ button {
 }
 
 .start-button {
+  cursor: pointer;
   height: 100%;
   width: 30%;
   border-radius: 5px;
   font-size: 18px;
   color: #46424D;
+}
+
+.log-activity-btn {
+  cursor: pointer;
+  width: 13em;
+  border-radius: 5px;
+  font-size: 18px;
+  height: 9%;
+  font-size: 
 }
 
 .main-right {
@@ -257,7 +269,7 @@ button {
   height: 30%;
   border-right: 5px solid #B3FD78;
   color: #FFF;
-  }
+}
 
 .activity-card-header {
   font-weight: 600;
