@@ -13,6 +13,10 @@ var page2 = document.querySelector('.activity-background-2')
 var timerHeader = document.querySelector('.chosen-task-header')
 var timerCount = document.querySelector('.timer-countdown')
 var logActivityBtn = document.querySelector('.log-activity-btn')
+var cardHead = document.querySelector('.activity-card-header')
+var cardTime = document.querySelector('.activity-card-time')
+var cardTask = document.querySelector('.activity-card-task')
+var pastActivities = document.querySelector('.past-activities')
 var boxArray = [studyBox, meditateBox, exerciseBox];
 var inputsArray = [minutesInput, secondsInput, taskAnswer];
 
@@ -22,6 +26,7 @@ minutesInput.addEventListener('input', checkTime);
 secondsInput.addEventListener('input', checkTime);
 startBtn.addEventListener('click', checkBoxes);
 timerStart.addEventListener('click', startTimer)
+logActivityBtn.addEventListener('click', populateCard)
 
 
 function changeBoxes() {
@@ -145,4 +150,26 @@ function showError() {{
       <p class="warning">Define your seconds.</p>
     </div>`)
   }
+}
+
+function populateCard() {
+  event.target.setAttribute('disabled', true)
+  var activeHeader;
+  for(var i = 0; i < boxArray.length; i++){
+    if(boxArray[i].classList.contains('active')){
+      activeHeader = boxArray[i].dataset.id;
+    }
+  }
+  displayCard(activeHeader)
+}
+
+function displayCard(activeHeader) {
+pastActivities.insertAdjacentHTML('afterbegin', `
+<section class="activity-card">
+  <section class="type-time-container">
+    <p class="activity-card-header">${activeHeader.toUpperCase()}</p>
+    <p class="activity-card-time">${minutesInput.value} MIN ${secondsInput.value} SEC</p>
+    <p class="activity-card-task">${taskAnswer.value}</p>
+  </section>
+</section>`)
 }
