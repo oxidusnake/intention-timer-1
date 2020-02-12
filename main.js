@@ -170,7 +170,7 @@ function populateCard() {
 function displayCard(activeHeader) {
 pastActivities.insertAdjacentHTML('afterbegin', `
 <section class="activity-card">
-  <section class="type-time-container">
+  <section class="type-time-container ${activeHeader}">
     <p class="activity-card-header">${activeHeader.toUpperCase()}</p>
     <p class="activity-card-time">${minutesInput.value} MIN ${secondsInput.value} SEC</p>
     <p class="activity-card-task">${taskAnswer.value}</p>
