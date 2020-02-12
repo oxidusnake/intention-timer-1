@@ -43,6 +43,7 @@ button.activity-boxes {
   height: 100%;
   border-right: 4px solid #46424D;
 }
+
 .activity-background-1,
 .activity-background-2 {
   color: #FFF;
@@ -308,7 +309,7 @@ button.activity-boxes {
   color: #EFB7EC;
 }
 
-.study-box.active{
+.study-box.active {
   border: 2px solid #B3FD78;
   color: #B3FD78;
 }
