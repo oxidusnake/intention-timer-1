@@ -20,7 +20,6 @@ var pastActivities = document.querySelector('.past-activities')
 var boxArray = [studyBox, meditateBox, exerciseBox];
 var inputsArray = [minutesInput, secondsInput, taskAnswer];
 
-
 activityBoxes.addEventListener('click', changeBoxes);
 minutesInput.addEventListener('input', checkTime);
 secondsInput.addEventListener('input', checkTime);
@@ -28,20 +27,19 @@ startBtn.addEventListener('click', checkBoxes);
 timerStart.addEventListener('click', startTimer)
 logActivityBtn.addEventListener('click', populateCard)
 
-
 function changeBoxes() {
-    var classList = event.target.classList;
-    var currentDataId = event.target.dataset.id;
-    var btnImg = event.target.firstElementChild;
-    if(classList.contains('active')) {
-      classList.remove('active');
-      btnImg.src = `assets/${currentDataId}.svg`
-    } else {
-      classList.add('active')
-      btnImg.src = `assets/${currentDataId}-active.svg`
-    }
-    removeActive(currentDataId);
+  var classList = event.target.classList;
+  var currentDataId = event.target.dataset.id;
+  var btnImg = event.target.firstElementChild;
+  if(classList.contains('active')) {
+    classList.remove('active');
+    btnImg.src = `assets/${currentDataId}.svg`
+  } else {
+    classList.add('active')
+    btnImg.src = `assets/${currentDataId}-active.svg`
   }
+  removeActive(currentDataId);
+}
 
 function removeActive(currentDataId) {
   for (var i = 0; i < boxArray.length; i++) {
@@ -53,19 +51,23 @@ function removeActive(currentDataId) {
   }
 
 function checkTime() {
-    if(minutesInput.value === '') {
-      minutesInput.value = '';
-    }
-    if(secondsInput.value === '') {
-      secondsInput.value = '';
-    }
+  if(minutesInput.value === '') {
+    minutesInput.value = '';
   }
+  if(secondsInput.value === '') {
+    secondsInput.value = '';
+  }
+}
 
 function displayTimer() {
   page1.classList.add('hidden')
   page2.classList.remove('hidden')
+  for (var i = 0; i < boxArray.length; i++){
+    if(boxArray[i].classList.contains('active')){
+      timerStart.classList.add(`${boxArray[i].dataset.id}`)
+    }
+  }
   timerHeader.innerText = taskAnswer.value;
-  debugger
   if(secondsInput.value < 10) {
     secondsInput.value = `0${secondsInput.value}`
   }
@@ -164,12 +166,12 @@ function populateCard() {
 }
 
 function displayCard(activeHeader) {
-pastActivities.insertAdjacentHTML('afterbegin', `
-<section class="activity-card">
-  <section class="type-time-container">
-    <p class="activity-card-header">${activeHeader.toUpperCase()}</p>
-    <p class="activity-card-time">${minutesInput.value} MIN ${secondsInput.value} SEC</p>
-    <p class="activity-card-task">${taskAnswer.value}</p>
-  </section>
-</section>`)
+  pastActivities.insertAdjacentHTML('afterbegin', `
+  <section class="activity-card">
+    <section class="type-time-container ${activeHeader}">
+      <p class="activity-card-header">${activeHeader.toUpperCase()}</p>
+      <p class="activity-card-time">${minutesInput.value} MIN ${secondsInput.value} SEC</p>
+      <p class="activity-card-task">${taskAnswer.value}</p>
+    </section>
+  </section>`)
 }
