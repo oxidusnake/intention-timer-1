@@ -232,7 +232,7 @@ button.activity-boxes {
   border-radius: 5px;
   font-size: 18px;
   height: 9%;
-  font-size: 
+  font-size:
 }
 
 .main-right {
@@ -321,6 +321,30 @@ button.activity-boxes {
 .exercise-box.active {
   border: 2px solid #FD8078;
   color: #FD8078;
+}
+
+.timer-start-button.study {
+  border: 5px solid #B3FD78;
+}
+
+.timer-start-button.meditate {
+  border: 5px solid #C278FD;
+}
+
+.timer-start-button.exercise {
+  border: 5px solid #FD8078;
+}
+
+.type-time-container.study {
+  border-right: 5px solid #B3FD78;
+}
+
+.type-time-container.meditate {
+  border-right: 5px solid #C278FD;
+}
+
+.type-time-container.exercise {
+  border-right: 5px solid #FD8078;
 }
 
 .hidden {

@@ -64,8 +64,12 @@ function checkTime() {
 function displayTimer() {
   page1.classList.add('hidden')
   page2.classList.remove('hidden')
+  for (var i = 0; i < boxArray.length; i++){
+    if(boxArray[i].classList.contains('active')){
+      timerStart.classList.add(`${boxArray[i].dataset.id}`)
+    }
+  }
   timerHeader.innerText = taskAnswer.value;
-  debugger
   if(secondsInput.value < 10) {
     secondsInput.value = `0${secondsInput.value}`
   }
