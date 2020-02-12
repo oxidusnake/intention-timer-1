@@ -10,7 +10,9 @@ var mainLeft = document.querySelector('.main-left')
 var timerStart = document.querySelector('.timer-start-button')
 var page1 = document.querySelector('.activity-background-1')
 var page2 = document.querySelector('.activity-background-2')
+var page3 = document.querySelector('.activity-background-3')
 var timerHeader = document.querySelector('.chosen-task-header')
+var activityHeader = document.querySelector('.activity-header')
 var timerCount = document.querySelector('.timer-countdown')
 var logActivityBtn = document.querySelector('.log-activity-btn')
 var cardHead = document.querySelector('.activity-card-header')
@@ -60,8 +62,9 @@ function checkTime() {
 }
 
 function displayTimer() {
-  page1.classList.add('hidden')
-  page2.classList.remove('hidden')
+  page1.classList.add('hidden');
+  page2.classList.remove('hidden');
+  activityHeader.innerText = 'Current Activity'
   for (var i = 0; i < boxArray.length; i++){
     if(boxArray[i].classList.contains('active')){
       timerStart.classList.add(`${boxArray[i].dataset.id}`)
@@ -155,7 +158,9 @@ function showError() {{
 }
 
 function populateCard() {
-  event.target.setAttribute('disabled', true)
+  page2.classList.add('hidden')
+  page3.classList.remove('hidden')
+  activityHeader.innerText = 'Completed Activity'
   var activeHeader;
   for(var i = 0; i < boxArray.length; i++){
     if(boxArray[i].classList.contains('active')){
