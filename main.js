@@ -10,15 +10,19 @@ var mainLeft = document.querySelector('.main-left')
 var timerStart = document.querySelector('.timer-start-button')
 var page1 = document.querySelector('.activity-background-1')
 var page2 = document.querySelector('.activity-background-2')
+var page3 = document.querySelector('.activity-background-3')
 var timerHeader = document.querySelector('.chosen-task-header')
+var activityHeader = document.querySelector('.activity-header')
 var timerCount = document.querySelector('.timer-countdown')
 var logActivityBtn = document.querySelector('.log-activity-btn')
+var newActivityBtn = document.querySelector('.create-new-activity')
 var cardHead = document.querySelector('.activity-card-header')
 var cardTime = document.querySelector('.activity-card-time')
 var cardTask = document.querySelector('.activity-card-task')
 var pastActivities = document.querySelector('.past-activities')
+var activityMessage = document.querySelector('.activity-message-container')
 var boxArray = [studyBox, meditateBox, exerciseBox];
-var inputsArray = [minutesInput, secondsInput, taskAnswer];
+var inputsArray = [taskAnswer, minutesInput, secondsInput];
 
 activityBoxes.addEventListener('click', changeBoxes);
 minutesInput.addEventListener('input', checkTime);
@@ -26,6 +30,7 @@ secondsInput.addEventListener('input', checkTime);
 startBtn.addEventListener('click', checkBoxes);
 timerStart.addEventListener('click', startTimer)
 logActivityBtn.addEventListener('click', populateCard)
+newActivityBtn.addEventListener('click', createNewActivityPage)
 
 function changeBoxes() {
   var classList = event.target.classList;
@@ -60,8 +65,12 @@ function checkTime() {
 }
 
 function displayTimer() {
-  page1.classList.add('hidden')
-  page2.classList.remove('hidden')
+  page1.classList.add('hidden');
+  page2.classList.remove('hidden');
+  if(timerStart.disabled) {
+    timerStart.disabled = false;
+  }
+  activityHeader.innerText = 'Current Activity'
   for (var i = 0; i < boxArray.length; i++){
     if(boxArray[i].classList.contains('active')){
       timerStart.classList.add(`${boxArray[i].dataset.id}`)
@@ -75,7 +84,7 @@ function displayTimer() {
 }
 
 function startTimer() {
-  event.target.setAttribute('disabled', true)
+  timerStart.setAttribute('disabled', true)
   var minutes = Number(minutesInput.value);
   var seconds = Number(secondsInput.value)
   var totalSeconds = (minutes * 60) + seconds;
@@ -106,6 +115,7 @@ function displayComplete() {
 }
 
 function checkBoxes(){
+  timerStart.innerText = 'START'
   var isNotSelected;
   for (var i = 0; i < boxArray.length; i++) {
     if(!boxArray[i].classList.contains("active")) {
@@ -119,13 +129,17 @@ function checkBoxes(){
 }
 
 function checkInputs(isNotSelected) {
+  var isFilledOut;
   for (var i = 0; i < inputsArray.length; i++) {
-    if(inputsArray[i].value !== '' && !isNotSelected) {
-      displayTimer();
-      break
+    if(inputsArray[i].value !== '') {
+      isFilledOut = true;
     } else {
+      isFilledOut = false;
       break
     }
+  }
+  if(!isNotSelected && isFilledOut) {
+    displayTimer();
   }
   showError();
 }
@@ -155,7 +169,11 @@ function showError() {{
 }
 
 function populateCard() {
-  event.target.setAttribute('disabled', true)
+  logActivityBtn.classList.add('hidden')
+  activityMessage.classList.add('hidden')
+  page2.classList.add('hidden')
+  page3.classList.remove('hidden')
+  activityHeader.innerText = 'Completed Activity'
   var activeHeader;
   for(var i = 0; i < boxArray.length; i++){
     if(boxArray[i].classList.contains('active')){
@@ -174,4 +192,17 @@ function displayCard(activeHeader) {
       <p class="activity-card-task">${taskAnswer.value}</p>
     </section>
   </section>`)
+}
+
+function createNewActivityPage() {
+  page3.classList.add('hidden');
+  page1.classList.remove('hidden');
+  activityHeader.innerText = 'New Activity'
+  for (var i = 0; i < boxArray.length; i++) {
+    boxArray[i].classList.remove('active')
+    boxArray[i].firstElementChild.src = `assets/${boxArray[i].dataset.id}.svg`
+  }
+  taskAnswer.value = '';
+  minutesInput.value = '';
+  secondsInput.value = '';
 }

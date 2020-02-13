@@ -57,6 +57,27 @@ button.activity-boxes {
   margin-left: 3.5%;
 }
 
+.activity-background-3 {
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  width: 93%;
+  height: 85%;
+  background-color: #46424D;
+  border-radius: 5px;
+  margin-left: 3.5%;
+}
+
+.create-new-activity {
+  cursor: pointer;
+  height: 8%;
+  margin-top: 22%;
+  width: 35%;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #FFF;
+}
+
 .activity-header {
   color: #CBC9CF;
   margin-left: 3.5%;
@@ -207,6 +228,12 @@ button.activity-boxes {
 
 .min-sec-container {
   width: 40%;
+}
+
+.activity-message {
+  color: #FFF;
+  margin: 0px;
+  margin-top: 1.5%;
 }
 
 .button-container {
