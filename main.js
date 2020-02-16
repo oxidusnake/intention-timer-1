@@ -1,3 +1,4 @@
+// This is the one we are commenting!!!
 // query selectors are grabbing elements from html and assigning them to JS variables
 var studyBox = document.querySelector('.study-box');
 var meditateBox = document.querySelector('.meditate-box');
@@ -33,190 +34,210 @@ startBtn.addEventListener('click', checkBoxes);
 timerStart.addEventListener('click', startTimer)
 logActivityBtn.addEventListener('click', populateCard)
 newActivityBtn.addEventListener('click', createNewActivityPage)
-
-
+// comments will comment on the line Below!
+// Executing the changeBoxes function
 function changeBoxes() {
-  //declaring a varaible set to whatever the clicked items class list is
+  // Declaring a variable called classList that will be dynamic classing depending on the click of the user.
   var classList = event.target.classList;
-  //declaring a varaible set to whatever the clicked items data id is
+// Declaring a variable called currentDataId which will be a dynamic dataset id that can be used for JS fucntionality independent of the class list.
   var currentDataId = event.target.dataset.id;
-  //declaring a varaible set to whatever the clicked items first child element is
+  // Declaring a variable called btnImg which will dynamically target the first child of which ever element is clicked, in this instance we are targeting the inner image of our primary buttons on the home page.
   var btnImg = event.target.firstElementChild;
-  //if statement stating if the clicked items classList contains the active class -
-  //remove that class and reset image to zero state
+  // We are creatng a conditional statement that is reaching into our class list and seeing if our dynamic target contains the class of 'active'
   if(classList.contains('active')) {
+    // IF the dynamic target does contain 'active' this will remove that attribute.
     classList.remove('active');
+    // we are defining the btnImg source with an interpolated event target that will unhighlight the corresponding button
     btnImg.src = `assets/${currentDataId}.svg`
-  //if the item does not contain a class of active -
-  //add the active class and reassign the source to the active image
+    // if the above IF conditional is not met...
   } else {
+    // If one of the buttons is not highlighted or not 'active' we will add the class of active.
     classList.add('active')
+    // using the btnImg source we are interpolating the dynamic target to insert the attributes of the function to which ever button the user has clicked on.
     btnImg.src = `assets/${currentDataId}-active.svg`
   }
-  //invoke remove active
+  // invoking the removeActive function that will be defined below.
   removeActive(currentDataId);
 }
-
+// We are defining the remove active function with the currentDataId variable
 function removeActive(currentDataId) {
-  //this function is looping through the box array and removing the active class -
-  //and resetting image src value if the index dataset id does not match the event -
-  //target id
+  // using a for loop that creates an index that runs the length of boxArray and increments up to its maximum value
   for (var i = 0; i < boxArray.length; i++) {
+    // creating a conditional statement saying that IF the index of the boxarray dataset id is not equal to the currentDataId THEN
     if(boxArray[i].dataset.id !== currentDataId) {
+      // the boxArray index will reach into the class list and remove the class attribute of active.
       boxArray[i].classList.remove('active');
+      //which ever element the boxarray is on we will reach for the first child element and interpolate the dataset id to equal the corresponding image source that does not highlight or vice versa
       boxArray[i].firstElementChild.src = `assets/${boxArray[i].dataset.id}.svg`
       }
     }
   }
-
+// defining the checkTime function
 function checkTime() {
-  //this function is checking if the inputted time is a string
-  //if it is, we are setting the inputs value to empty
-  //This is so letters are not accepted in the inputs
+  // setting a conditional that says IF the minutes input value strictly equals a string...
   if(minutesInput.value === '') {
+// THEN the minutes input will clear out the input. since only numbers should be allowed here
     minutesInput.value = '';
   }
+  // setting a conditional similar to the function above just for the seconds input
   if(secondsInput.value === '') {
     secondsInput.value = '';
   }
 }
-
+// Defining the displayTimer function
 function displayTimer() {
-  //adding a class of hidden to the page 1's classlist
+  // taking the element of page1 and adding the class list of .hidden which is a display none attribute in the CSS file
   page1.classList.add('hidden');
-  //removing a class of hidden to the page 2's classlist
-  page2.classList.remove('hidden'); // this is hiding the first page and displaying the seconds page
-  //the timer start button is disabled on click so the second time through the -
-  //app we have to disable the startTimer btn.
+  // setting a conditional saying IF the timerStart is disabled THEN
   if(timerStart.disabled) {
+    // the timerstart disabled feature will be false reenabling the button for use in subsequent uses after the initial.
     timerStart.disabled = false;
   }
-  //changing the header of the page current activityBoxes
+  // this takes the inner text of the activityHeader defines it to 'Current Activity'
   activityHeader.innerText = 'Current Activity'
-  //looping through box array and giving a class to the timer start btn that is
-  //the same name as the dataset id.
-  //this allows the border of the timer start to be dynamic
+  // creating a for loop that will create an index that goes through the length of the boxArray.
   for (var i = 0; i < boxArray.length; i++){
+    // setting a conditional IF the boxArray index contains the class of active THEN
     if(boxArray[i].classList.contains('active')){
+      // the timerStart will add the interpolated box array index to the dataset id for use in JS
       timerStart.classList.add(`${boxArray[i].dataset.id}`)
     }
   }
-  //this allows the user to see the task they inserted on the timer
+  //takes the time header elements inner text and has it equal to the value what the taskAnswer was on the previous page.
   timerHeader.innerText = taskAnswer.value;
-  //if the time they inserted is less than 10, we are interpolating a 0 for
-  //readability
+  // setting a conditional IF the seconds input is less than 10 THEN
   if(secondsInput.value < 10) {
+    // the seconds input value will add a zero in front of the less than 10 value for aesthetic purposes.
     secondsInput.value = `0${secondsInput.value}`
   }
-  //displaying the timer in case they have seconds less that 10
+  // This defines what is going to be displayed on the timers inner text by interpolating the value the user has put in for the seconds and minutes.
   timerCount.innerText = `${minutesInput.value}:${secondsInput.value}`
 }
-
+// defining the clock with the startTimer function
 function startTimer() {
-  //disabling the button after click
+  // takes the timerstart button and disables it at the start of the clock function.
   timerStart.setAttribute('disabled', true)
-  //turning inputted minutes to a number and declaring it as a variable
+  // sets the minutes input value from page1 and turns it from a string into an integer or 'Number'
   var minutes = Number(minutesInput.value);
-  //turning inputted seconds to a number and declaring it as a variable
+  // creates a variable taking the seconds input value from page1 and turns it from a string into an integer
   var seconds = Number(secondsInput.value)
-  //getting total seconds by multiplying minutes by 60 and adding seconds
+  // creates a variable totalSeconds that takes the minutes and multiplies them by 60 and then adds the seconds to have an internal combined integer of seconds
   var totalSeconds = (minutes * 60) + seconds;
-  //getting remaining minutes by dividing seconds by 60 and throwing away the remainder
+  // creates a variable called remainingMinutes that will be our totalSeconds / 60 and then rounds whatever number that equals down to give us a whole number to display for the minutes on the clock.
   var remainingMinutes = Math.floor(totalSeconds / 60);
-  //getting remaining seconds by grabbing the remainder of total seconds / 60
+  // creates a variable called remainingSeconds that takes our total seconds and gets the modulus of 60 which is the reaminder after division giving us a total seconds to put on the clock.
   var remainingSeconds = totalSeconds % 60;
-  //creating an interval for the timer to run on every second
-  //giving the interval conditions with the timer logic function
+  // creates a variable called countdown which creates a set interval using an anonymous function.
   var countdown = setInterval(function(){
-      //interpolating a 0 on the remaining seconds if they are less than 10
+    // sets a conditional IF the total seconds modulus of 60 is less than 10 THEN
       if(totalSeconds % 60 < 10) {
+        // the remaining seconds will be turned from a string into an integer
         remainingSeconds = Number(remainingSeconds);
+        // using this seconds integer if the number is less than 10 using interpolation a 0 will be added to the front of the number for aesthetic purposes.
         remainingSeconds = `0${remainingSeconds}`
       }
-      //displaying the last decreased second
+      // takes the timer count inner text and interpolates the remaining minutes and the remaining seconds to create the appearance of a clock ticking down by the second
       timerCount.innerText = `${remainingMinutes}:${remainingSeconds}`
-      //decreasing the total seconds by 1
+      // totalSeconds is decrementing
       totalSeconds--
-      //reestablishing the remaining minutes and seconds based on decreased total
+      // defining the remainingMinutes to be the total seconds / 60 and then using the math.floor function to round the number down each time it is run to give only whole numbers on the clock.
       remainingMinutes = Math.floor(totalSeconds / 60);
+      // defining remainingSeconds as the total seconds modulus of 60 or the remainder
       remainingSeconds = totalSeconds % 60;
-      //if the decreased second is now less than 10, we are interpolating a 0
+      // creating a conditional saying IF the remaining seconds is less than 10 THEN
       if(remainingSeconds < 10) {
+// using interpolation the remaining seconds will insert a zero infront of any digit less than 10 for aesthetic purposes.
         remainingSeconds = `0${remainingSeconds}`
       }
-      //if the decreased total is now -1 we are not doing another interval
+      // setting a conditional IF the totalSecondsis less than 0 THEN
       if(totalSeconds < 0) {
+        // the countdown will clear the interval so that the numbers never descend into the negatives.
         clearInterval(countdown);
-        //running diplay complete function
+        // execute the displayComplete function.
         displayComplete();
       }
+      // this is the interval time of 1000 miliseconds creating human seconds on the clock and executing the startTimer function once every second.
     }, 1000)
   }
-
+// defining the displayComplete function
 function displayComplete() {
-  //changing the inner text of the start button to 'complete'
+  // taking the timerStart inner text and changing it to the string 'COMPLETE!'
   timerStart.innerText = 'COMPLETE!'
-  //displaying the log activity button
+  // the logActivityBtn button is reaching into the classlist and removes the class of hidden revealing the button upon the completion of the timer
   logActivityBtn.classList.remove('hidden')
 }
-
+// defining the checkBoxes function
 function checkBoxes(){
-  //changing the inner text of the start button from 'complete' to 'start'
+  // the timerStart innertext is being changed to 'START'
   timerStart.innerText = 'START'
-  //declaring a variable as undefined
+  // declaring the variable isNotSelected to be defined below
   var isNotSelected;
-  //if the box array index has active then the check boxes is valid
+  // starting a for loop that will create an index that goes through the length of the boxArray
   for (var i = 0; i < boxArray.length; i++) {
+    // creates a conditional that says IF the index of the box array does not contain 'active' THEN
     if(!boxArray[i].classList.contains("active")) {
+      // isNotSelected will equal true
       isNotSelected = true;
+      // otherwise
     } else {
+      // isNotSelected will equal false
       isNotSelected = false;
+      // break out of the loop in this condition
       break
     }
   }
-  //invoking check inputs with validity of boxes
+  // execute checkinputs function with the isNotSelected variable
   checkInputs(isNotSelected)
 }
-
+// defining the checkInputs function with the isNotSelected variable
 function checkInputs(isNotSelected) {
-  //declaring a variable of undefined
+  // declaring the variable isFilledOut
   var isFilledOut;
-  //if the input index contains anything input is valid
+  // begins a for loop that creates an index that will go through the length of the inputsArray
   for (var i = 0; i < inputsArray.length; i++) {
+    // creates a conditional saying IF the index of the arrays value is not equal to a string THEN
     if(inputsArray[i].value !== '') {
+      // isFilledOut is true
       isFilledOut = true;
+      // otherwise
     } else {
+      // isFilledOut will equal false
       isFilledOut = false;
+      // under this conditional break out of the loop
       break
     }
   }
-  //if all inputs are valid and 1 box is selected, allow access to page 2
+  // setting a conditional IF there is not isNotSelected and isFilledOut is true THEN
   if(!isNotSelected && isFilledOut) {
+    // execute displayTimer
     displayTimer();
   }
-  //if the requirements are not met, errors will appear
+  // otherwise execute showError
   showError();
 }
-
+// defining the showError function
 function showError() {
-  //if the input is empty display task answer error
+  // setting a conditional IF the taskanswer from page1 strictly equals an empty string THEN
   if(taskAnswer.value === "") {
+    // the taskAnswer will insertAdjacentHTML after the end of the input line. inserting the warning container after the end combined with a warning image.
     taskAnswer.insertAdjacentHTML('afterend', `
     <div class="warning-container">
       <img class="warning-icon" src="assets/warning.svg">
       <p class="warning">A description is required.</p>
     </div>`)
   }
-  //if the input is empty display minutes error
+  // setting a conditional IF the minutesInput value is strictly equal to an empty string THEN
   if(minutesInput.value === ""){
+    // the minuutes input will insert a div called 'warning container' that will be inserted after the input line
     minutesInput.insertAdjacentHTML('afterend', `
     <div class="warning-container">
       <img class="warning-icon" src="assets/warning.svg">
       <p class="warning">Define your minutes.</p>
     </div>`)
   }
-  //if the input is empty display seconds error
+  // setting a conditional IF the seconds input value is strictly equal to an empty string THEN
   if(secondsInput.value === ""){
+    // the secondsInput will insert a div called 'warning container' that will appear after the end of the seconds input line
     secondsInput.insertAdjacentHTML('afterend', `
     <div class="warning-container">
       <img class="warning-icon" src="assets/warning.svg">
@@ -224,33 +245,34 @@ function showError() {
     </div>`)
   }
 }
-
+// defining the populateCard function
 function populateCard() {
-  //hide the log activity button
+  // once the function executes then the logActivityBtn button will add the class of hidden removing it from the page.
   logActivityBtn.classList.add('hidden')
-  //display the 'complete' message
+  // the activityMessage message will add the class of hidden to remove it from the page
   activityMessage.classList.add('hidden')
-  //hide the timer page
+  // page2 will add the class of hidden to remove the page.
   page2.classList.add('hidden')
-  //display the page that gives an option to create new activity
+  // page3 will remove the class of hidden revealing the 3rd page to the user
   page3.classList.remove('hidden')
-  //header of the card says
+  // change the activity header inner text to say 'Completed Activity'
   activityHeader.innerText = 'Completed Activity'
-  //declaring a variable with an undefined value
+  // declaring the variable activeHeader
   var activeHeader;
-  //assigning the activeHeader equal to the dataset id of the active box
+  // begin a for loop that will create an index that runs through the length of the boxArray
   for(var i = 0; i < boxArray.length; i++){
+    // setting a conditional IF the boxArray index class list contains the word 'active' THEN
     if(boxArray[i].classList.contains('active')){
+      // the active header will equal whatever the box array index dataset id is at that given moment.
       activeHeader = boxArray[i].dataset.id;
     }
   }
-  //invoke function with activeHeader argument
+  // execute the displayCard function with the activeHeader variable
   displayCard(activeHeader)
 }
-
+// defining  the displayCard function with the activeHeader variable
 function displayCard(activeHeader) {
-  //displayed card with interpolated values in correct positions
-  //made the activeHeader upper case with the upperCase method
+  // using the insertAdjacentHTML mechanic the past activities card is filled out after the beginning using interpolation to fill in the card with the input values that were given on page1 by the user.
   pastActivities.insertAdjacentHTML('afterbegin', `
   <section class="activity-card">
     <section class="type-time-container ${activeHeader}">
@@ -260,19 +282,22 @@ function displayCard(activeHeader) {
     </section>
   </section>`)
 }
-
+//defining the createNewActivityPage function
 function createNewActivityPage() {
-  // hide page 3
-  //unhide page1
+  // page3 is going into the class list and adding the class of hidden of hidden removing the page from the screen.
   page3.classList.add('hidden');
+  // page1 is reaching into the class list and removing the class of hidden showing page1 to the user
   page1.classList.remove('hidden');
-  //activityHeader inner text is changed to page 1 requirement
+  // The activeHeader inner text will change to display 'New Activity'
   activityHeader.innerText = 'New Activity'
-  //removing all previous inserted slections and inputs from first task
+  // starts a for loop that creates an index that will run the length of the boxArray
   for (var i = 0; i < boxArray.length; i++) {
+    // the box array index will remove the class of active to any buttons holding that attribute.
     boxArray[i].classList.remove('active')
+    // the box array index will look for the first child element in this case the picture of the button and using interpolation will change the inner image to be unhighlighted upon page open.
     boxArray[i].firstElementChild.src = `assets/${boxArray[i].dataset.id}.svg`
   }
+  // these 3 answers on page1 will be cleared from the previous entry so that the page can now be populated with a new activity, time and task answer.
   taskAnswer.value = '';
   minutesInput.value = '';
   secondsInput.value = '';
